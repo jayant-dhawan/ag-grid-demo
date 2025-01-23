@@ -5,10 +5,11 @@ import NavBar from "./components/NavBar";
 import Select from "./components/Select";
 import { GROUP_OPTIONS } from "./constants";
 import useFetch from "./hooks/useFetch";
-import { GroupOptions, Planets } from "./types";
+import { GroupOptions, Planet, Planets } from "./types";
 import { generateColumnGroupConfig, processPlanetsData } from "./utils/data";
 import agGridTheme from "./agGridTheme";
 import Switch from "./components/Switch";
+import { ColDef, RowClassParams } from "ag-grid-community";
 
 function App() {
   const [selectedSort, setSelectedSort] = useState<GroupOptions>(
@@ -17,12 +18,22 @@ function App() {
   const [expand, setExpand] = useState<boolean>(true);
   const { data } = useFetch<Planets>("https://swapi.info/api/planets");
 
+  function handleSelectSort(val: GroupOptions) {
+    setSelectedSort(val);
+  }
+
+  function getRowStyle(params: RowClassParams<Planet>) {
+    if (Number(params.data?.population) <= 200000)
+      return { fontWeight: "800", backgroundColor: "gray" };
+    return undefined;
+  }
+
   const processedData = useMemo(() => {
     if (!data) return null;
     return processPlanetsData(data);
   }, [data]);
   const columnDefs = useMemo(() => {
-    return generateColumnGroupConfig(selectedSort);
+    return generateColumnGroupConfig(selectedSort) as ColDef<Planet>[];
   }, [selectedSort]);
 
   return (
@@ -34,7 +45,7 @@ function App() {
             <Select
               defaultValue={selectedSort}
               value={selectedSort}
-              onValueChange={(val: GroupOptions) => setSelectedSort(val)}
+              onValueChange={handleSelectSort}
               items={GROUP_OPTIONS.map((val) => ({ value: val, label: val }))}
             />
             <Switch
@@ -48,6 +59,7 @@ function App() {
               rowData={processedData}
               columnDefs={columnDefs}
               groupDefaultExpanded={expand ? -1 : 0}
+              getRowStyle={getRowStyle}
               theme={agGridTheme}
               rowGroupPanelShow="always"
             />

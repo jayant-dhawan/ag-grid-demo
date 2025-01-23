@@ -4,7 +4,7 @@ import { Theme } from "@radix-ui/themes";
 import {
   ClientSideRowModelModule,
   ModuleRegistry,
-  CellStyleModule,
+  RowStyleModule,
   TextFilterModule,
 } from "ag-grid-community";
 import { RowGroupingModule, RowGroupingPanelModule } from "ag-grid-enterprise";
@@ -16,7 +16,7 @@ ModuleRegistry.registerModules([
   ClientSideRowModelModule,
   RowGroupingModule,
   RowGroupingPanelModule,
-  CellStyleModule,
+  RowStyleModule,
   TextFilterModule,
 ]);
 
