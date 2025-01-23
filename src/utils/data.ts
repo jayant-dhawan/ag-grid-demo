@@ -22,7 +22,9 @@ export function processPlanetsData(data: Planets) {
   return processedData;
 }
 
-export function generateColumnGroupConfig(order: GroupOptions) {
+export function generateColumnGroupConfig(order: GroupOptions | "") {
+  if (!order) return COLUMNS_CONFIG;
+
   const orderValues: Record<string, number> = order
     .split("/")
     .map((val) => val.trim())
