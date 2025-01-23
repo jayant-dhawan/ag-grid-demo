@@ -9,10 +9,14 @@ import { GroupOptions, Planet, Planets } from "./types";
 import { generateColumnGroupConfig, processPlanetsData } from "./utils/data";
 import agGridTheme from "./agGridTheme";
 import Switch from "./components/Switch";
-import { ColDef, RowClassParams } from "ag-grid-community";
+import {
+  ColDef,
+  ColumnRowGroupChangedEvent,
+  RowClassParams,
+} from "ag-grid-community";
 
 function App() {
-  const [selectedSort, setSelectedSort] = useState<GroupOptions>(
+  const [selectedSort, setSelectedSort] = useState<GroupOptions | "">(
     GROUP_OPTIONS[2]
   );
   const [expand, setExpand] = useState<boolean>(true);
@@ -20,6 +24,10 @@ function App() {
 
   function handleSelectSort(val: GroupOptions) {
     setSelectedSort(val);
+  }
+
+  function handleGroupChange(event: ColumnRowGroupChangedEvent<Planet>) {
+    if (event.source === "toolPanelUi") setSelectedSort("");
   }
 
   function getRowStyle(params: RowClassParams<Planet>) {
@@ -61,6 +69,7 @@ function App() {
               groupDefaultExpanded={expand ? -1 : 0}
               getRowStyle={getRowStyle}
               theme={agGridTheme}
+              onColumnRowGroupChanged={handleGroupChange}
               rowGroupPanelShow="always"
             />
           </Grid>
