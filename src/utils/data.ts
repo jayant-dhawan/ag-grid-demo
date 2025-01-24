@@ -33,6 +33,8 @@ export function generateColumnGroupConfig(order: GroupOptions | "") {
   return COLUMNS_CONFIG.map((col) => ({
     ...col,
     ...(orderValues[col.field] >= 0 && {
+      enableRowGroup: true,
+      hide: true,
       rowGroupIndex: orderValues[col.field],
     }),
   }));

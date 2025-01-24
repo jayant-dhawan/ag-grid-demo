@@ -3,7 +3,7 @@ import classes from "./NavBar.module.css";
 
 export default function NavBar() {
   return (
-    <Flex p="5" align={"center"} className={classes.navbar}>
+    <Flex p="4" align={"center"} className={classes.navbar}>
       <Container>
         <Heading weight="bold">AG Grid Demo</Heading>
       </Container>

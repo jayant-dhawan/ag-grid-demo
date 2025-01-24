@@ -62,7 +62,12 @@ function App() {
               checked={expand}
             />
           </Flex>
-          <Grid width="100%" height="80vh">
+          <Grid
+            width="100%"
+            height="80vh"
+            px="2"
+            py={{ initial: "2", md: "0" }}
+          >
             <AgGridReact
               rowData={processedData}
               columnDefs={columnDefs}

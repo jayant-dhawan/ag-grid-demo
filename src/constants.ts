@@ -15,7 +15,11 @@ export const COLUMNS_CONFIG: Array<
     { field: "population", filter: "agTextColumnFilter" },
     { field: "diameter" },
     { field: "orbital_period", headerName: "Orbital Period" },
-    { field: "terrain", enableRowGroup: true, hide: true },
-    { field: "climate", enableRowGroup: true, hide: true },
-    { field: "rotation_period", enableRowGroup: true, hide: true },
+    { field: "climate", enableRowGroup: true },
+    { field: "terrain", enableRowGroup: true },
+    {
+      field: "rotation_period",
+      headerName: "Rotation Period",
+      enableRowGroup: true,
+    },
   ];
