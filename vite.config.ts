@@ -9,6 +9,15 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (id.includes("node_modules/ag-grid-community")) {
+            return "ag-grid-community";
+          }
+          if (id.includes("node_modules/ag-grid-enterprise")) {
+            return "ag-grid-enterprise";
+          }
+          if (id.includes("radix")) {
+            return "radix";
+          }
           if (id.includes("node_modules")) {
             return "vendor";
           }
