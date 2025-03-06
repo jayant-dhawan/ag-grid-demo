@@ -9,7 +9,9 @@ import {
 } from "ag-grid-community";
 import { RowGroupingModule, RowGroupingPanelModule } from "ag-grid-enterprise";
 import App from "./App.tsx";
-import "@radix-ui/themes/styles.css";
+import "@radix-ui/themes/tokens/base.css";
+import "@radix-ui/themes/components.css";
+import "@radix-ui/themes/utilities.css";
 import "./index.css";
 
 ModuleRegistry.registerModules([

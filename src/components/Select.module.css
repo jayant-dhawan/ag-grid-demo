@@ -24,7 +24,7 @@
 }
 
 .Icon {
-  color: Var(--white);
+  color: var(--white);
 }
 
 .Content {
